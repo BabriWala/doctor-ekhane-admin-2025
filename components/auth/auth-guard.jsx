@@ -50,7 +50,7 @@ export function AuthGuard({ children, requireAdmin = false }) {
       }
     }
   }, [loading, isAuthenticated, isAdmin, requireAdmin, router]);
-
+  console.log(loading);
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">

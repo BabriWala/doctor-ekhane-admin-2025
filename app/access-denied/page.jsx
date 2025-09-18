@@ -1,10 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-nocheck
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ShieldX, ArrowLeft } from "lucide-react"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ShieldX, ArrowLeft } from "lucide-react";
 
 export default function AccessDenied() {
   return (
@@ -16,8 +22,8 @@ export default function AccessDenied() {
           </div>
           <CardTitle className="text-2xl">Access Denied</CardTitle>
           <CardDescription>
-            You dont have permission to access this page. Please contact your administrator if you believe this is an
-            error.
+            You dont have permission to access this page. Please contact your
+            administrator if you believe this is an error.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -30,5 +36,5 @@ export default function AccessDenied() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

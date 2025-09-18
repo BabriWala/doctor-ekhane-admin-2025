@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/ui/chart.tsx", "components/ui/FileUpload.tsx", "components/ui/package-icon.jsx", "lib/auth.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/ui/chart.tsx", "components/ui/FileUpload.tsx", "components/ui/package-icon.jsx", "lib/auth.js"],
   "exclude": ["node_modules"]
 }

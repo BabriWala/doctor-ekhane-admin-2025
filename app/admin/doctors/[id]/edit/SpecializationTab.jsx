@@ -41,8 +41,6 @@ export default function SpecializationTab({ doctorId }) {
           setSpecializationList(res.data.specialization);
         }
       } catch (error) {
-
-
         toast.error(
           error.response?.data?.message || "Failed to fetch specializations"
         );
@@ -57,10 +55,12 @@ export default function SpecializationTab({ doctorId }) {
     try {
       if (editingId) {
         await api.put(`/doctor/${doctorId}/specialization/${editingId}`, data);
-        toast({ title: "Success", description: "Specialization updated" });
+
+        toast.success("Specialization updated");
       } else {
         await api.post(`/doctor/${doctorId}/specialization`, data);
-        toast({ title: "Success", description: "Specialization added" });
+
+        toast.success("Specialization added");
       }
 
       const res = await api.get(`/doctor/${doctorId}`);
@@ -69,8 +69,6 @@ export default function SpecializationTab({ doctorId }) {
       reset({ field: "", description: "" });
       setEditingId(null);
     } catch (error) {
-
-
       toast.error(
         error.response?.data?.message || "Failed to save specialization"
       );
@@ -86,8 +84,6 @@ export default function SpecializationTab({ doctorId }) {
       toast({ title: "Deleted", description: "Specialization deleted" });
       setSpecializationList((prev) => prev.filter((s) => s._id !== id));
     } catch (error) {
-
-
       toast.error(
         error.response?.data?.message || "Failed to delete specialization"
       );
@@ -133,8 +129,8 @@ export default function SpecializationTab({ doctorId }) {
             {loading
               ? "Saving..."
               : editingId
-                ? "Update Specialization"
-                : "Add Specialization"}
+              ? "Update Specialization"
+              : "Add Specialization"}
           </Button>
           {editingId && (
             <Button

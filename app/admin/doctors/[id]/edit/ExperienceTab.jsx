@@ -61,10 +61,11 @@ export default function ExperienceTab({ doctorId }) {
     try {
       if (editingId) {
         await api.put(`/doctor/${doctorId}/experience/${editingId}`, data);
-        toast({ title: "Success", description: "Experience updated" });
+        toast.success("Experience updated");
       } else {
         await api.post(`/doctor/${doctorId}/experience`, data);
-        toast({ title: "Success", description: "Experience added" });
+
+        toast.success("Experience added");
       }
 
       // Refresh list
@@ -80,10 +81,7 @@ export default function ExperienceTab({ doctorId }) {
       });
       setEditingId(null);
     } catch (error) {
-
-      toast.error(
-        error.response?.data?.message || "Failed to save experience"
-      );
+      toast.error(error.response?.data?.message || "Failed to save experience");
     } finally {
       setLoading(false);
     }
@@ -99,8 +97,6 @@ export default function ExperienceTab({ doctorId }) {
         prev.filter((exp) => exp._id !== experienceId)
       );
     } catch (error) {
-
-
       toast.error(
         error.response?.data?.message || "Failed to delete experience"
       );
@@ -172,8 +168,8 @@ export default function ExperienceTab({ doctorId }) {
             {loading
               ? "Saving..."
               : editingId
-                ? "Update Experience"
-                : "Add Experience"}
+              ? "Update Experience"
+              : "Add Experience"}
           </Button>
           {editingId && (
             <Button

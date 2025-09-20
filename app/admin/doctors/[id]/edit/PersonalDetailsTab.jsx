@@ -59,8 +59,6 @@ export default function PersonalDetailsTab({ doctorId }) {
           reset(res.data.personalDetails);
         }
       } catch (error) {
-
-
         toast.error(
           error.response?.data?.message || "Failed to fetch doctor details"
         );
@@ -73,12 +71,10 @@ export default function PersonalDetailsTab({ doctorId }) {
     setLoading(true);
     try {
       await api.put(`/doctor/${doctorId}/personal-details`, data);
-      toast({ title: "Success", description: "Personal details updated" });
-    } catch (error) {
 
-      toast.error(
-        error.response?.data?.message || "Failed to update details"
-      );
+      toast.success("Personal details updated");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to update details");
     } finally {
       setLoading(false);
     }

@@ -28,7 +28,6 @@ export default function ImagesTab({ hospitalId }) {
           setImages(res.data.basicInfo.images);
         }
       } catch (error) {
-
         toast.error(
           error.response?.data?.message || "Failed to fetch hospital images"
         );
@@ -49,7 +48,6 @@ export default function ImagesTab({ hospitalId }) {
   const handleUpload = async (e) => {
     e.preventDefault();
     if (previewFiles.length === 0) {
-
       toast.error(
         error.response?.data?.message || "Please select at least one image"
       );
@@ -67,13 +65,10 @@ export default function ImagesTab({ hospitalId }) {
 
       setImages(res.data.images);
       setPreviewFiles([]);
-      toast({ title: "Success", description: "Images uploaded successfully" });
+
+      toast.success("Images uploaded successfully");
     } catch (error) {
-
-
-      toast.error(
-        error.response?.data?.message || "Failed to upload images"
-      );
+      toast.error(error.response?.data?.message || "Failed to upload images");
     } finally {
       setLoading(false);
     }
@@ -88,10 +83,7 @@ export default function ImagesTab({ hospitalId }) {
       setImages(res.data.images);
       toast({ title: "Success", description: "Image deleted successfully" });
     } catch (error) {
-
-      toast.error(
-        error.response?.data?.message || "Failed to delete image"
-      );
+      toast.error(error.response?.data?.message || "Failed to delete image");
     } finally {
       setLoading(false);
     }

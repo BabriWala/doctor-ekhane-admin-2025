@@ -56,12 +56,12 @@ export default function CreateDoctorPage() {
       await api.post("/doctor", {
         personalDetails: data,
       });
-      toast({ title: "Success", description: "Doctor created successfully" });
+      toast.success("Doctor created successfully");
       router.push("/admin/doctors");
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to create doctor");
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 

@@ -28,7 +28,6 @@ export default function LogoTab({ hospitalId }) {
           setLogo(res.data.basicInfo.logo);
         }
       } catch (error) {
-
         toast.error(
           error.response?.data?.message || "Failed to fetch hospital logo"
         );
@@ -50,7 +49,8 @@ export default function LogoTab({ hospitalId }) {
     e.preventDefault();
     const fileInput = e.target.elements.logo;
     if (!fileInput.files[0]) {
-      toast({ title: "Error", description: "Please select a file first" });
+      toast.success("Please select a file first");
+
       return;
     }
 
@@ -66,13 +66,8 @@ export default function LogoTab({ hospitalId }) {
       setLogo(res.data.logo);
       setPreview(null);
 
-
-
       toast.success("Hospital logo updated successfully"); // ✅ success toast
-
     } catch (error) {
-
-
       toast.error(
         error.response?.data?.message || "Failed to update hospital logo"
       );

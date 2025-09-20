@@ -45,10 +45,7 @@ export default function AddressTab({ doctorId }) {
           reset(res.data.personalDetails.address);
         }
       } catch (error) {
-
-        toast.error(
-          error.response?.data?.message || "Failed to fetch address"
-        );
+        toast.error(error.response?.data?.message || "Failed to fetch address");
       }
     };
     fetchDoctor();
@@ -58,12 +55,9 @@ export default function AddressTab({ doctorId }) {
     setLoading(true);
     try {
       await api.put(`/doctor/${doctorId}/address`, data);
-      toast({ title: "Success", description: "Address updated successfully" });
+      toast.success("Address updated successfully");
     } catch (error) {
-
-      toast.error(
-        error.response?.data?.message || "Failed to update address"
-      );
+      toast.error(error.response?.data?.message || "Failed to update address");
     } finally {
       setLoading(false);
     }

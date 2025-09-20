@@ -36,13 +36,13 @@ export default function DoctorsPage() {
   // Flatten doctors data
   const flattenedDoctors =
     doctors?.map((doc) => ({
-      _id: doc._id,
-      firstName: doc.personalDetails?.firstName || "",
-      middleName: doc.personalDetails?.middleName || "",
-      lastName: doc.personalDetails?.lastName || "",
-      email: doc.personalDetails?.email || "",
-      phone: doc.personalDetails?.phone || "",
-      status: doc.status || "N/A",
+      _id: doc?._id,
+      firstName: doc?.personalDetails?.firstName || "",
+      middleName: doc?.personalDetails?.middleName || "",
+      lastName: doc?.personalDetails?.lastName || "",
+      email: doc?.personalDetails?.email || "",
+      phone: doc?.personalDetails?.phone || "",
+      status: doc?.status || "N/A",
     })) || [];
 
   // Delete doctor mutation
@@ -51,17 +51,14 @@ export default function DoctorsPage() {
     onSuccess: () => {
       queryClient.invalidateQueries(["doctors"]);
       toast({ title: "Success", description: "Doctor deleted successfully" });
+
       setDeleteDoctor(null);
     },
     onError: (error) => {
-
-
-      toast.error(
-        error.response?.data?.message || "Failed to delete doctor"
-      );
+      toast.error(error.response?.data?.message || "Failed to delete doctor");
     },
   });
-
+  console.log(flattenedDoctors);
   return (
     <div className="space-y-6">
       {/* Header */}

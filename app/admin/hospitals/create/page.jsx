@@ -62,7 +62,8 @@ export default function CreateHospitalForm() {
         phone: data.phone,
         email: data.email,
       });
-      toast({ title: "Success", description: "Hospital created successfully" });
+
+      toast.success("Hospital created successfully");
       router.push("/admin/hospitals");
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to create hospital");

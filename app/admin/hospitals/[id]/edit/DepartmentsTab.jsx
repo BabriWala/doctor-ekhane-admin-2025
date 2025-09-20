@@ -41,8 +41,6 @@ export default function DepartmentsTab({ hospitalId }) {
           setDepartments(res.data.departments);
         }
       } catch (error) {
-
-
         toast.error(
           error.response?.data?.message || "Failed to fetch departments"
         );
@@ -60,10 +58,12 @@ export default function DepartmentsTab({ hospitalId }) {
           `/hospital/${hospitalId}/departments/${editingId}`,
           data
         );
-        toast({ title: "Success", description: "Department updated" });
+
+        toast.success("Department updated");
       } else {
         const res = await api.post(`/hospital/${hospitalId}/departments`, data);
-        toast({ title: "Success", description: "Department added" });
+
+        toast.success("Department added");
       }
 
       // Refresh list
@@ -73,10 +73,7 @@ export default function DepartmentsTab({ hospitalId }) {
       reset({ name: "" });
       setEditingId(null);
     } catch (error) {
-
-      toast.error(
-        error.response?.data?.message || "Failed to save department"
-      );
+      toast.error(error.response?.data?.message || "Failed to save department");
     } finally {
       setLoading(false);
     }
@@ -92,14 +89,13 @@ export default function DepartmentsTab({ hospitalId }) {
   const handleDelete = async (departmentId) => {
     try {
       await api.delete(`/hospital/${hospitalId}/departments/${departmentId}`);
-      toast({ title: "Deleted", description: "Department deleted" });
+
+      toast.success("Department deleted");
 
       setDepartments((prev) =>
         prev.filter((dept) => dept._id !== departmentId)
       );
     } catch (error) {
-
-
       toast.error(
         error.response?.data?.message || "Failed to delete department"
       );
@@ -137,8 +133,8 @@ export default function DepartmentsTab({ hospitalId }) {
               {loading
                 ? "Saving..."
                 : editingId
-                  ? "Update Department"
-                  : "Add Department"}
+                ? "Update Department"
+                : "Add Department"}
             </Button>
             {editingId && (
               <Button

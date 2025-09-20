@@ -45,8 +45,6 @@ export default function EducationTab({ doctorId }) {
           setEducationList(res.data.education);
         }
       } catch (error) {
-
-
         toast.error(
           error.response?.data?.message || "Failed to fetch education"
         );
@@ -62,11 +60,13 @@ export default function EducationTab({ doctorId }) {
       if (editingId) {
         // Update
         await api.put(`/doctor/${doctorId}/education/${editingId}`, data);
-        toast({ title: "Success", description: "Education updated" });
+
+        toast.success("Education updated");
       } else {
         // Add
         await api.post(`/doctor/${doctorId}/education`, data);
-        toast({ title: "Success", description: "Education added" });
+
+        toast.success("Education added");
       }
 
       // Refresh list
@@ -81,11 +81,7 @@ export default function EducationTab({ doctorId }) {
       });
       setEditingId(null);
     } catch (error) {
-
-
-      toast.error(
-        error.response?.data?.message || "Failed to save education"
-      );
+      toast.error(error.response?.data?.message || "Failed to save education");
     } finally {
       setLoading(false);
     }
@@ -99,8 +95,6 @@ export default function EducationTab({ doctorId }) {
 
       setEducationList((prev) => prev.filter((edu) => edu._id !== educationId));
     } catch (error) {
-
-
       toast.error(
         error.response?.data?.message || "Failed to delete education"
       );
@@ -166,8 +160,8 @@ export default function EducationTab({ doctorId }) {
             {loading
               ? "Saving..."
               : editingId
-                ? "Update Education"
-                : "Add Education"}
+              ? "Update Education"
+              : "Add Education"}
           </Button>
           {editingId && (
             <Button

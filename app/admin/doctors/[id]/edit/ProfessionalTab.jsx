@@ -55,8 +55,6 @@ export default function ProfessionalTab({ doctorId }) {
           reset(res.data.professional);
         }
       } catch (error) {
-
-
         toast.error(
           error.response?.data?.message || "Failed to fetch professional info"
         );
@@ -69,10 +67,9 @@ export default function ProfessionalTab({ doctorId }) {
     setLoading(true);
     try {
       await api.put(`/doctor/${doctorId}/professional`, data);
-      toast({ title: "Success", description: "Professional info updated" });
+
+      toast.success("Professional info updated");
     } catch (error) {
-
-
       toast.error(
         error.response?.data?.message || "Failed to update professional info"
       );

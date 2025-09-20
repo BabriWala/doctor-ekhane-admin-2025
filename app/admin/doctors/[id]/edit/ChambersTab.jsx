@@ -62,7 +62,6 @@ export default function ChambersTab({ doctorId }) {
           setChambers(res.data.chambers);
         }
       } catch (error) {
-
         toast.error(
           error.response?.data?.message || "Failed to fetch chambers"
         );
@@ -77,10 +76,12 @@ export default function ChambersTab({ doctorId }) {
     try {
       if (editingId) {
         await api.put(`/doctor/${doctorId}/chamber/${editingId}`, data);
-        toast({ title: "Success", description: "Chamber updated" });
+
+        toast.success("AChamber updated");
       } else {
         await api.post(`/doctor/${doctorId}/chamber`, data);
-        toast({ title: "Success", description: "Chamber added" });
+
+        toast.success("Chamber added");
       }
 
       // Refresh list
@@ -90,11 +91,7 @@ export default function ChambersTab({ doctorId }) {
       reset();
       setEditingId(null);
     } catch (error) {
-
-
-      toast.error(
-        error.response?.data?.message || "Failed to save chamber"
-      );
+      toast.error(error.response?.data?.message || "Failed to save chamber");
     } finally {
       setLoading(false);
     }
@@ -107,10 +104,7 @@ export default function ChambersTab({ doctorId }) {
       toast({ title: "Deleted", description: "Chamber deleted" });
       setChambers((prev) => prev.filter((c) => c._id !== chamberId));
     } catch (error) {
-
-      toast.error(
-        error.response?.data?.message || "Failed to delete chamber"
-      );
+      toast.error(error.response?.data?.message || "Failed to delete chamber");
     }
   };
 
@@ -236,8 +230,8 @@ export default function ChambersTab({ doctorId }) {
             {loading
               ? "Saving..."
               : editingId
-                ? "Update Chamber"
-                : "Add Chamber"}
+              ? "Update Chamber"
+              : "Add Chamber"}
           </Button>
           {editingId && (
             <Button
